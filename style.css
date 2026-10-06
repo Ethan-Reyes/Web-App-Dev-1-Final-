@@ -1,0 +1,205 @@
+/* this is my CSS file for my Web App Dev 1 resume final. UIkit loads first and this sits on top of it, so anything here wins */
+
+/* my colors, I kept the dark blue and gold from my other resume drafts (module 1-2 I think? I forgot I just copy pasted most of the code from those assignments lol */
+:root {
+  --navy: #2b2b5c;
+  --card: #36366f;
+  --gold: #ffd700;
+  --cyan: #00ddff;
+  --text: #f4f1e6;
+  --border: #5a5a9a;
+}
+
+/* UIkit sets its own colors on html, so I set mine here to cover the whole page.
+   I cleaned up the fonts: one sans-serif for everything instead of mixing in Georgia like before */
+html {
+  background-color: var(--navy);
+  color: var(--text);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* clamp is the same trick from my Module 3, text grows with the screen but never gets too big or small */
+body {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+/* headings. UIkit makes them dark gray which you can't see on blue, so I changed them */
+h1,
+h2,
+h3 {
+  color: var(--gold);
+}
+
+h2 {
+  margin-top: 0;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--gold);
+}
+
+main section {
+  margin-top: 2.5rem;
+}
+
+/* links are cyan because it has good contrast on the blue */
+a {
+  color: var(--cyan);
+}
+
+a:hover {
+  color: var(--gold);
+}
+
+/* header: picture and text sit side by side, flex-wrap drops the text under the picture on small screens */
+.resume-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 0 0;
+}
+
+.header-text {
+  flex: 1 1 18rem;
+}
+
+.header-text h1 {
+  margin: 0;
+}
+
+.subtitle {
+  margin: 0.25rem 0 1rem;
+}
+
+/* round picture. object-fit keeps it from getting squished, object-position keeps my face in the crop */
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  border: 4px solid var(--gold);
+}
+
+#current-date {
+  margin-left: 0.75rem;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+/* UIkit's blue button doesn't match my colors, so I made it gold */
+.uk-button-primary {
+  background-color: var(--gold);
+  color: var(--navy);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.uk-button-primary:hover,
+.uk-button-primary:focus {
+  background-color: var(--cyan);
+  color: var(--navy);
+  transform: translateY(-2px);
+}
+
+/* skills show up as little pills */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-list li {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background-color: var(--card);
+}
+
+/* the accordion titles are gray by default too, so they get my colors */
+.uk-accordion-title {
+  color: var(--gold);
+}
+
+.uk-accordion-title:hover,
+.uk-accordion-title:focus {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+/* flips the little + / - icon to a lighter color so you can see it on the blue */
+.uk-accordion-title::before {
+  filter: invert(1);
+}
+
+/* projects: one column on a phone, two when the screen is at least 641px (same breakpoint as my Module 3) */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 641px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* cards lift up a little when you hover, this is my CSS transition for the rubric */
+.project-card {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background-color: var(--card);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.6);
+}
+
+.project-card h3 {
+  margin-top: 0;
+}
+
+/* contact form */
+.form-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+/* box that shows what got sent after the form submits */
+.thank-you {
+  padding: 1.25rem;
+  border: 1px solid var(--gold);
+  border-radius: 0.75rem;
+  background-color: var(--card);
+}
+
+.thank-you h3 {
+  margin-top: 0;
+}
+
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* if someone turned animations off on their device, I turn mine off too */
+@media (prefers-reduced-motion: reduce) {
+  .uk-button-primary,
+  .project-card {
+    transition: none;
+  }
+}
